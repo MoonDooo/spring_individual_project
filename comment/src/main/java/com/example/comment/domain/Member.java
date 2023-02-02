@@ -9,19 +9,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter @Setter
+@Getter
 @Table(name = "member")
 public class Member {
+
+    public Member(String id, String passwd, String name, String nickname){
+        this.id = id;
+        this.passwd = passwd;
+        this.name = name;
+        this.nickname = nickname;
+    }
+
     @Id
     @Column(name = "member_id")
-    private Long Id;
+    private String id;
 
     @Convert(converter = PasswordConverter.class)
     private String passwd;
 
     private String name;
-    private String nickName;
+    private String nickname;
 
     @OneToMany(mappedBy = "member")
     private List<Comment> comments = new ArrayList<>();
+
+
 }
