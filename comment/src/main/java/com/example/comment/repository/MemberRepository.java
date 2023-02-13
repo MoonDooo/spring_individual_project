@@ -48,11 +48,26 @@ public class MemberRepository {
                 .getResultList();
     }
 
+    public List<Member> findById(@Param("Id")String id){
+        return em.createQuery("select m from Member m where m.id = :id", Member.class)
+                .setParameter("id", id)
+                .getResultList();
+    }
+
     /**
      * 중복 체크
      */
     public boolean existsByNickname(String nickname){
         List<Member> getMember = findByNickname(nickname);
+        if(!getMember.isEmpty()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public boolean existsById(String id){
+        List<Member> getMember = findById(id);
         if(!getMember.isEmpty()){
             return true;
         }else{

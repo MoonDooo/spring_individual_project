@@ -3,6 +3,7 @@ package com.example.comment.domain;
 import com.example.comment.service.PasswordConverter;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
@@ -12,6 +13,9 @@ import java.util.List;
 @Getter
 @Table(name = "member")
 public class Member {
+
+    public Member(){
+    }
 
     public Member(String id, String passwd, String name, String nickname){
         this.id = id;

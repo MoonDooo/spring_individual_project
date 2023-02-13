@@ -16,8 +16,9 @@ public class CommentRepository {
     /**
      * DB 저장
      */
-    public void save(Comment comment){
+    public Long save(Comment comment){
         em.persist(comment);
+        return comment.getId();
     }
 
     /**
@@ -30,6 +31,13 @@ public class CommentRepository {
 
     public List<Comment> findAllCommentWithMember(){
         return em.createQuery("select m from Comment m INNER JOIN m.member", Comment.class)
+                .getResultList();
+    }
+
+    public List<Comment> findAllCommentWithMemberPage(int offset, int limit) {
+        return em.createQuery("select m from Comment m INNER JOIN m.member ORDER BY m.localDateTime DESC", Comment.class)
+                .setFirstResult(offset)
+                .setMaxResults(limit)
                 .getResultList();
     }
 }
