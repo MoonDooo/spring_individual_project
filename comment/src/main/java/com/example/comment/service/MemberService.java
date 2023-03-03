@@ -1,6 +1,8 @@
 package com.example.comment.service;
 
 import com.example.comment.domain.Member;
+import com.example.comment.dto.memberDto.JoinMemberResponseDTO;
+import com.example.comment.dto.memberDto.MemberGetDTO;
 import com.example.comment.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +25,9 @@ public class MemberService {
         memberRepository.save(member);
 
         return member.getId();
+    }
+
+    public JoinMemberResponseDTO joinAndResponseMemberIdToDto(Member member){
+        return new JoinMemberResponseDTO(join(member));
     }
 }
