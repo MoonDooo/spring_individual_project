@@ -2,7 +2,7 @@ package com.example.comment.controller.commentController;
 
 
 import com.example.comment.dto.Result;
-import com.example.comment.dto.commentDto.WriteCommentDTO;
+import com.example.comment.dto.commentDto.RequestCommentSaveDTO;
 import com.example.comment.dto.commentDto.WriteCommentResponseDTO;
 import com.example.comment.service.CommentService;
 import jakarta.validation.Valid;
@@ -25,8 +25,8 @@ public class CommentControllerImpl implements CommentController{
      */
     @Override
     @PostMapping("new")
-    public WriteCommentResponseDTO writeCommentResponse(@RequestBody @Valid WriteCommentDTO comment) {
-        String nickName = commentService.save(comment.getMemberId(), comment.getComment());
+    public WriteCommentResponseDTO writeCommentResponse(@RequestBody @Valid RequestCommentSaveDTO comment) {
+        String nickName = commentService.save(comment);
         return new WriteCommentResponseDTO(nickName);
     }
 
@@ -39,11 +39,11 @@ public class CommentControllerImpl implements CommentController{
     @Override
     @PostMapping("new/select")
     public Result writeCommentWithSelect(
-            @RequestBody @Valid WriteCommentDTO comment,
+            @RequestBody @Valid RequestCommentSaveDTO comment,
             @RequestParam(value = "offset", defaultValue = offsetDefault) int offset,
             @RequestParam(value = "limit", defaultValue = limitDefault) int limit
     ) {
-        commentService.save(comment.getMemberId(), comment.getComment());
+        commentService.save(comment);
         return Comments(offset, limit);
     }
 

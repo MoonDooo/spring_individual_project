@@ -15,9 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/member")
 @RequiredArgsConstructor
-public class MemberControllerImpl {
+public class MemberControllerImpl implements MemberController{
     @Autowired private final MemberService memberService;
-
     @PostMapping("/new")
     public JoinMemberResponseDTO createMember(@RequestBody @Valid CreateMemberRequestDTO request){
         Member member = new Member(request.getId(), request.getPasswd(), request.getName(), request.getNickName());

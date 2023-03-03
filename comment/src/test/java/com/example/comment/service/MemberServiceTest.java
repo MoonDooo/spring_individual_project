@@ -1,8 +1,7 @@
 package com.example.comment.service;
 
 import com.example.comment.domain.Member;
-import com.example.comment.repository.MemberRepository;
-import org.junit.jupiter.api.Assertions;
+import com.example.comment.repository.MemberRepositoryImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +16,10 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 class MemberServiceTest {
-    @Autowired MemberRepository memberRepository;
-    @Autowired MemberService memberService;
+    @Autowired
+    MemberRepositoryImpl memberRepository;
+    @Autowired
+    MemberServiceImpl memberService;
 
     @Test
     public void 회원가입() throws Exception {
